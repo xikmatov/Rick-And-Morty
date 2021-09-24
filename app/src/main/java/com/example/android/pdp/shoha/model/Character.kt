@@ -13,5 +13,5 @@ data class Character (
     var origin : LocationData,
     var location : LocationData,
     var image : String,
-    var episode : List<String>
+    var episode : List<String?>
 ): Parcelable

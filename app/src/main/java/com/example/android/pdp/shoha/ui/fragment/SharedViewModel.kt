@@ -1,5 +1,6 @@
 package com.demo.android.cassiana.rickandmortycardapp.ui.fragment
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,9 +19,9 @@ class SharedViewModel(private val repository: Repository): ViewModel() {
         isFilter.value = false
     }
 
-    fun getCharacters(page: Int) {
+    fun getCharacters(context:Context, page: Int) {
         viewModelScope.launch{
-            val characters = repository.getCharacters(page)
+            val characters = repository.getCharacters(context, page)
             listCharactersInEpisode.value = characters.results
             isFilter.value = false
         }

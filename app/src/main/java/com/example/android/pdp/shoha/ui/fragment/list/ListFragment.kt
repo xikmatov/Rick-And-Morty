@@ -40,7 +40,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewModel.getCharacters(1)
+        viewModel.getCharacters(context,1)
     }
 
 }
