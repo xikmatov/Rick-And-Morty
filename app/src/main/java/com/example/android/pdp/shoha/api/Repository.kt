@@ -1,15 +1,15 @@
 package com.demo.android.cassiana.rickandmortycardapp.api
 
 import android.content.Context
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.GlobalScope
 import com.example.android.pdp.shoha.db.AppDb
 import com.example.android.pdp.shoha.utils.NetworkHelper
+import com.example.android.pdp.shoha.db.entity.CharacterE
 import com.demo.android.cassiana.rickandmortycardapp.model.Character
 import com.demo.android.cassiana.rickandmortycardapp.model.LocationData
 import com.demo.android.cassiana.rickandmortycardapp.model.CharacterList
-import com.example.android.pdp.shoha.db.entity.CharacterE
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.squareup.picasso.Picasso
 
 class Repository {
 
@@ -49,22 +49,21 @@ class Repository {
             val results = ArrayList<Character>()
             val allCharacters = AppDb.getInstance(context).characterDao().getAllCharacters()
 
-            GlobalScope.launch {
-                for (character in allCharacters) {
-                    val character1 = Character(
-                        character.id ?: 0,
-                        character.name ?: "Unknown",
-                        character.status ?: "Unknown",
-                        character.species ?: "Unknown",
-                        character.gender ?: "Unknown",
-                        LocationData(character.locationName ?: "Unknown", "no"),
-                        LocationData(character.originName ?: "Unknown", "no"),
-                        character.image ?: "no",
-                        arrayOfNulls<String>(character.episodeSize ?: 0).toList()
-                    )
-                    results.add(character1)
-                }
+            for (character in allCharacters) {
+                val character1 = Character(
+                    character.id ?: 0,
+                    character.name ?: "Unknown",
+                    character.status ?: "Unknown",
+                    character.species ?: "Unknown",
+                    character.gender ?: "Unknown",
+                    LocationData(character.locationName ?: "Unknown", "no"),
+                    LocationData(character.originName ?: "Unknown", "no"),
+                    character.image ?: "no",
+                    arrayOfNulls<String>(character.episodeSize ?: 0).toList()
+                )
+                results.add(character1)
             }
+
             return CharacterList(results)
         }
     }

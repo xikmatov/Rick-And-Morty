@@ -1,4 +1,4 @@
-package com.demo.android.cassiana.rickandmortycardapp.ui.fragment
+package com.example.android.pdp.shoha.viewmodels
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
